@@ -1,38 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Project-Api
 
-## Getting Started
+This is a simple Next.js project that demonstrates how to create a frontend application with dynamic routes and manage comments using an API route.
 
-First, run the development server:
+## Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+
+## Running the Application
+
+1. Install the required dependencies by running the following command:
+
+   ```
+   npm install
+   ```
+
+2. Start the development server:
+
+   ```
+   npm run dev
+   ```
+
+   This will launch the application in development mode. If it doesn't open automatically, you can visit `http://localhost:3000` in your web browser.
+
+## Project Structure
+
+The project structure is organized as follows:
+
+```
+- /pages
+  - index.js
+  - [commentID].js
+- /data
+  - comments.js
+- /public
+  - ...
+- /styles
+  - ...
+- next.config.js
+- package.json
+- ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- `pages/index.js`: The main page of the application containing the comment submission form and list of comments.
+- `pages/[commentID].js`: A dynamic route page used to display individual comments based on their IDs.
+- `data/comments.js`: A data module containing an array of comment objects for initial data and testing purposes.
+- `public`: A directory to store static assets like images or other resources.
+- `styles`: A directory for storing CSS stylesheets.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## API Routes
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+The project utilizes two API routes:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. `/api/comments`: Handles fetching existing comments, adding new comments via POST requests, and deleting comments via DELETE requests.
+2. `/api/comments/:commentID`: Handles GET and DELETE requests for fetching and deleting a specific comment by its ID.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Please make sure the API routes are correctly implemented and provided in the `pages/api` directory.
 
-## Learn More
+## How It Works
 
-To learn more about Next.js, take a look at the following resources:
+1. **Viewing Comments**: The main page (`/`) displays a list of existing comments. It fetches the comments from the backend API using the `/api/comments` route when the page loads.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Adding Comments**: Users can submit new comments using the input field and "Submit Comments" button on the main page. The new comment is sent to the backend API using the `/api/comments` route with a POST request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. **Viewing Individual Comments**: Clicking on a comment will take users to a dynamically generated page at `/[commentID]`, where `commentID` is the ID of the selected comment. The page will display the details of the specific comment.
 
-## Deploy on Vercel
+4. **Deleting Comments**: On the individual comment page (`/[commentID]`), users can delete the comment by clicking the "Delete" button. The comment will be removed from the backend using the `/api/comments/:commentID` route with a DELETE request.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Technologies Used
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Next.js: A React framework for building server-rendered applications with routing and API support.
+- React: A JavaScript library for building user interfaces.
+- API Routes: Next.js API routes for handling backend functionality.
+- CSS: Styling the components and layout.
+
+## Contributions
+
+Contributions to this project are welcome. If you find any bugs or have suggestions for improvements, feel free to create an issue or submit a pull request.
+
